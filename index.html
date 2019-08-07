@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Head or coin</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Red+Hat+Display|Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="message">Select either Heads or Tails</div>
+		<div class="btn-container">
+			<button type="button" class="heads">Heads</button>
+			<button type="button" class="tails">Tails</button>
+		</div>
+	</div>
+	<script>
+		const coinArray = ["Heads","Tails"];
+		const score =  [0,0];
+		const message = document.querySelector(".message");
+		const buttons = document.querySelectorAll("button");
+
+		for (i = 0; i < buttons.length; i++) {
+			buttons[i].addEventListener("click", tossCoin);
+		}
+
+		function tossCoin (e) {
+			let playerGuess = e.target.innerText;
+			let computerToss = Math.floor(Math.random()*coinArray.length);
+			let computerGuess = coinArray[computerToss];
+			message.innerHTML = "Computer selected " + computerGuess + "<br>";
+			let output;
+
+			if(playerGuess === computerGuess) {
+			output = "Player wins!";
+				score[0]++;
+			} else {
+			output = "Computer wins!";
+				score[1]++;
+			} 
+			message.innerHTML += output + "<br>Player " + score[0] + " Computer " + score[1];
+		}
+	</script>
+</body>
+</html>
